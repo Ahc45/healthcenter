@@ -1,0 +1,9 @@
+
+{
+  "description" : "Health Center Information Management",
+  "name" : "healthcenter/codeigniterapplication",
+  "require": {
+    "php": ">=5.3",
+    "faisalman/simple-excel-php": "dev-master"
+  }
+}
