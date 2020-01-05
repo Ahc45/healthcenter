@@ -100,12 +100,12 @@ class Users_M extends MY_Model
 	
 	function login()
 	{
+        $this->load->library('encryption');
 		$user = $this->get_by(array(
 			'username' => post('username'),
-			'password' => post('password'),
+			'password' => $this->hash(post('password')),
 			'is_deleted' => 0,
 		), TRUE);
-		
 		if ( count($user) ) {
 			return $this->set_session($user);
 		};
@@ -122,8 +122,10 @@ class Users_M extends MY_Model
 				'email' => $user->email,
 				'contact_no' => $user->contact_no,
 				'account_type' => $user->account_type,
+				'account_no' => $user->account_no,
 				'is_admin' => true,
-				'is_logged_in' => true
+				'is_logged_in' => true,
+				'created' => $user->created,
 			);
 
 			$this->session->set_userdata($user_data);
@@ -136,12 +138,17 @@ class Users_M extends MY_Model
 	function logout()
 	{
 		$this->session->sess_destroy();
+		//var_dump(session('is_logged_in'));die();
 	}
 
 	function is_logged_in()
-	{
-		return (bool) session('is_logged_in') && session('is_admin');
+	{	
+		//var_dump((bool) session('is_logged_in') == true && session('is_admin') == true); die();
+
+		return (bool) session('is_logged_in') == true && session('is_admin') == true;
+
 	}
+
 
 	function hash($string)
 	{
@@ -155,6 +162,22 @@ class Users_M extends MY_Model
 			$this->db->select('*');
 		}
 		return $this->db->get($this->_table_name);
+	}
+	function get_admin($params){
+
+		$this->_filters($params);
+		if ( array_key_exists('select', $params) && $params['select'] !=null ) {
+			$this->db->select($params['select']);
+		}else{
+			$this->db->select('*');
+		}
+		return $this->db->get($this->_table_name)->row();
+	}
+	function _filters($params){
+
+		if ( array_key_exists('id', $params) && $params['id'] !=null ) {
+			$this->db->where('users.id',$params['id']);
+		}
 	}
 
 

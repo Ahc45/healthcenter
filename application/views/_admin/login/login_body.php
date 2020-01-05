@@ -1,18 +1,23 @@
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?php echo base_url()?>assets/index2.html"><b>Admin</b>LTE</a>
+    <a href="<?php echo base_url('login')?>"><b>ALMAZA</b> UNO</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <div class="alert <?php echo $this->session->flashdata('alert_type'); ?> alert-dismissible <?php echo ($this->session->flashdata('show') == null)? 'hide' : 'show'; ?>">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong><?php echo $this->session->flashdata('title') ?></strong>
+      <?php echo $this->session->flashdata('message'); ?>
+    </div>
+    <?php echo ($this->session->flashdata('show') == null)? '<p class="login-box-msg">Sign in to start your session</p>' : ''; ?>
 
-    <form action="<?php echo base_url()?>assets/index2.html" method="post">
+    <form action="<?php echo base_url('login/validate_login')?>" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="text" class="form-control" placeholder="Username" name="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -31,17 +36,7 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div>
-    <!-- /.social-auth-links -->
-
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <a href="register.html" class="text-center">Request Login</a>
 
   </div>
   <!-- /.login-box-body -->

@@ -8,9 +8,13 @@ class Admin extends Admin_Controller {
   public function __construct(){
   	parent::__construct();
 
+    $this->load->model('users_m');
+    if ( !session('is_logged_in') && !session('is_customer') ) {
+        redirect('login');
+      }
   }
   function index(){
-    {
+
     $this->data['title'] = "Admin";
       $this->data['main_content'] = $this->base_temp.'admin_view';
     $this->load->model('users_m');
@@ -20,54 +24,78 @@ class Admin extends Admin_Controller {
     $this->data['admins'] = $this->users_m->get_all_admins($patient_params)->result();
     $this->load->view('_admin/_includes/header',$this->data);
     }
-  }
-  public function login(){
-
-  		$this->data['title'] = "Health Center - LOGIN";
-		$this->load->view('_admin/login/login_header',$this->data); 
-
-  }
-function validate_login()
-  {   
-    
-    $this->load->model('users_m');
-    $this->load->library('form_validation');
-    $rules = $this->users_m->login_rules;
-
-    $this->form_validation->set_rules($rules);
-
-    if($this->form_validation->run() == FALSE){
-        $this->login();
-    }else{      
-
-      if ( $this->users_m->login('username') == TRUE ) {
-        
-
-        $session_code = random_string('alnum', 30);
-        $this->users_m->save(array('session_code'=> $session_code), session('user_id') );
-        
-        $this->session->set_userdata( 'session_code', $session_code );
-
-          redirect('dashboard');
-        
-      }else{
-        $message = array('title'=> '', 'message' => 'Wrong Username and password combination.', 'show' => 'show', 'alert_type' => 'alert-danger' );
-        $this->session->set_flashdata($message); 
-        
-       redirect('user/login');
-       $this->data['show']= "show";
-
-      }
-    }
-  }
-
+  
+ 
 
  function add(){
+
       $this->load->helper('string');
+      $this->data['account_no'] = random_string('numeric');
         $this->data['title'] = "Add Admin User";
-        $this->data['patient_no'] = random_string('numeric');
         $this->data['main_content'] = $this->base_temp.'/add_admin';
       $this->load->view('_admin/_includes/header',$this->data);
     }
 
- }
+   function validate()
+   {
+      $this->form_validation->set_rules('account_no', 'Account No.', 'trim|required');
+      $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+      $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+      $this->form_validation->set_rules('birthday', 'Birthday', 'trim|required');
+      $this->form_validation->set_rules('contact_no', 'Contact Number', 'trim|required|numeric');
+      $this->form_validation->set_rules('account_type', 'Acount type', 'trim|required');
+      $this->form_validation->set_rules('username', 'Username', 'trim|required');
+      $this->form_validation->set_rules('password', 'Password', 'trim|required');
+      $this->form_validation->set_rules('address', 'Address', 'trim|required');
+        if($this->form_validation->run() == FALSE){
+          echo json_encode(array(
+            'is_valid'=> false,
+            'errors'=> $this->form_validation->error_array(),
+          ));
+        }else{    
+          $this->load->model('users_m');
+          $pass = $this->users_m->hash(post('password'));
+
+          $patient_params = array(
+            'account_no' => post('account_no'),
+            'first_name' => post('first_name'),
+            'last_name' => post('last_name'),
+            'birthday' => post('birthday'),
+            'contact_no' => post('contact_no'),
+            'account_type' => post('account_type'),
+            'username' => post('username'),
+            'password' => $pass,
+            'address' => post('address'),
+            'middle_name' =>post('middle_name'),
+          );
+          if(post('id') && post('id') != ''){
+            $id = $this->users_m->save($patient_params,post('id'));
+          }else{
+          $id = $this->users_m->save($patient_params);
+          }
+            // print_r($this->db->last_query()); 
+          echo json_encode(array(
+            'is_valid'=> true,
+            'info'=> $patient_params,
+          ));
+        } 
+
+        }
+  function edit($id){
+
+        $this->data['title'] = "Add Admin User"; 
+        $this->data['main_content'] = $this->base_temp.'/add_admin';
+        $user_params = array(
+            'id' => $id,
+        );
+        $this->load->model('users_m');
+      $users_data  =  $this->users_m->get_admin($user_params);
+      $this->load->library('encryption');
+      $users_data->password = $this->encryption->decrypt( $users_data->password);
+       $this->data['users_data'] =  $users_data;
+      $this->load->view('_admin/_includes/header',$this->data);
+
+    }
+
+
+}
