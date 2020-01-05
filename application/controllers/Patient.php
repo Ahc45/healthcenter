@@ -63,9 +63,12 @@ class Patient extends Admin_Controller {
 				'username' => post('username'),
 				'password' => $pass,
 				'address' => post('address'),
+				'age' => post('age'),
+				'middle_name' =>post('middle_name'),
+				'gender' => post('sex'),
 			);
 			$this->patient_m->save($patient_params);
-
+				// print_r($this->db->last_query()); 
 			echo json_encode(array(
 				'is_valid'=> true,
 				'info'=> $patient_params,

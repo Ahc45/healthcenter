@@ -33,7 +33,7 @@
                     <td><?php echo $adm->account_no?></td>
                     <td><?php echo $adm->account_type?></td>
                     <td><?php echo $adm->address?></td>
-                    <td><a href="#" class = "btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>  <a href="#" class = "btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    <td><a href="<?php echo base_url('admin/edit/'.$adm->id)?>"class = "btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>  <a href="#" class = "btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
                   </tr>
                 <?php endforeach ?>
               <?php endif ?>
