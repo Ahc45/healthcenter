@@ -10,7 +10,8 @@ class Login extends Admin_Controller {
 
     //$this->load->model('users_m');
     //var_dump($this->users_m->is_logged_in());die();
-    //$this->users_m->is_logged_in() == false || redirect('admin');
+    $this->users_m->is_logged_in() == false || redirect('admin');
+    
   }
 
  public function index(){

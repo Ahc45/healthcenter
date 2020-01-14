@@ -77,7 +77,7 @@ class Patient extends Admin_Controller {
 
 	  }
 	 function view_list(){
-	 	$this->data['title'] = "Patience";
+	 	$this->data['title'] = "Patients";
 	  	$this->data['main_content'] = $this->basetemp.'patience/patience_view';
 	 	$this->load->model('patient_m');
 	 	$patient_params = array(

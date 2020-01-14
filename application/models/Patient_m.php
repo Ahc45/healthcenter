@@ -89,6 +89,7 @@ class Patient_M extends MY_Model
 	);
 
 	function get_all_patient($params){
+		$this->_filter($params);
 		if ( array_key_exists('select', $params) && $params['select'] !=null ) {
 			$this->db->select($params['select']);
 		}else{
@@ -97,7 +98,10 @@ class Patient_M extends MY_Model
 		return $this->db->get($this->_table_name);
 	}
 
-	function _filter(){
+	function _filter($params){
+		if(array_key_exists('patient_no', $params)){
+			$this->db->where('patients.patient_no',$params['patient_no']);
+		}
 
 	}
 

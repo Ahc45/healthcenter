@@ -54,8 +54,17 @@
             <li class=""><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>SUPER ADMIN</a></li>
           </ul>
         </li>
-
-        <li><a href="#Admin-users"><i class="glyphicon glyphicon-plus"></i> <span>CHECK UP</span></a></li>
+        <li>
+            <a href="<?php echo base_url('checkup')?>"><i class="glyphicon glyphicon-plus"></i> <span>CHECK UP</span></a>
+        </li>
+        <li>
+            <a href="<>"><i class="glyphicon glyphicon-plus"></i> <span>PRE NATAL</span></a>
+        </li><li>
+            <a href="<>"><i class="glyphicon glyphicon-plus"></i> <span>VACINE</span></a>
+        </li>
+        <li>
+            <a href="<>"><i class="glyphicon glyphicon-plus"></i> <span>SCHEDULES</span></a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

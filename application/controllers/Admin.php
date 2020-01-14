@@ -10,7 +10,7 @@ class Admin extends Admin_Controller {
 
     $this->load->model('users_m');
     if ( !session('is_logged_in') && !session('is_customer') ) {
-        redirect('login');
+        //redirect('login');
       }
   }
   function index(){
