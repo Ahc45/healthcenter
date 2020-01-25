@@ -7,7 +7,6 @@ class Login extends Admin_Controller {
 
   public function __construct(){
     parent::__construct();
-
     //$this->load->model('users_m');
     //var_dump($this->users_m->is_logged_in());die();
     $this->users_m->is_logged_in() == false || redirect('admin');
@@ -56,9 +55,9 @@ function validate_login()
 
   function logout()
   {
-    $this->users_m->logout();
-    redirect(base_url('login'));
-    //die();
+    die(); 
+  //   $this->session->sess_destroy(); 
+  //   var_dump($this->users_m->is_logged_in()); 
   }
 
 }

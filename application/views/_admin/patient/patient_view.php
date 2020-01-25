@@ -19,8 +19,8 @@
                 <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Pateince #</th>
                   <th>Family Number</th>
+                  <th>Pateince No</th>
                   <th>Address</th>
                   <th>action</th>
                 </tr>

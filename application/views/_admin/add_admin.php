@@ -91,6 +91,7 @@
                         <option <?php echo (isset($users_data) && $users_data == "Admin" ? "selected" : '')?> >Admin</option>
                         <option <?php echo (isset($users_data) && $users_data == "Midwife" ? "selected" : '')?> >Midwife</option>
                         <option <?php echo (isset($users_data) && $users_data == "BHW" ? "selected" : '')?> >BHW</option>
+                        <option <?php echo (isset($users_data) && $users_data == "DOCTOR" ? "selected" : '')?> >DOCTOR</option>
                       </select>
                   </div>
                 </div>

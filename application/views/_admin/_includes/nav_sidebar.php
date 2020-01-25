@@ -1,6 +1,6 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <se ction class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
@@ -49,22 +49,22 @@
             </span>
           </a>
           <ul class="treeview-menu ">
-            <li class=""><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>DOCTOR</a></li>
-            <li><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i><B>BHW</B></a></li>
-            <li class=""><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>SUPER ADMIN</a></li>
+            <li class=""><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>ADMINS</a></li>
+            <li><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>BHW</a></li>
           </ul>
         </li>
         <li>
             <a href="<?php echo base_url('checkup')?>"><i class="glyphicon glyphicon-plus"></i> <span>CHECK UP</span></a>
         </li>
         <li>
-            <a href="<>"><i class="glyphicon glyphicon-plus"></i> <span>PRE NATAL</span></a>
-        </li><li>
-            <a href="<>"><i class="glyphicon glyphicon-plus"></i> <span>VACINE</span></a>
+            <a href="<>"><i class="fa fa-stethoscope"></i> <span>PRE NATAL</span></a>
         </li>
-        <li>
-            <a href="<>"><i class="glyphicon glyphicon-plus"></i> <span>SCHEDULES</span></a>
+        <li class=" <?php echo ($this->uri->segment(1) == "vaccine") ? 'active' : '' ?>">
+            <a href="<?php echo base_url('vaccine')?>"><i class="fa fa-plus-square"></i> <span>VACINE</span></a>
         </li>
+       <!--  <li>
+            <a href="<>"><i class=""></i> <span>SCHEDULES</span></a>
+        </li> -->
       </ul>
     </section>
     <!-- /.sidebar -->

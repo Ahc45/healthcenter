@@ -19,7 +19,7 @@
                 <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Account #</th>
+                  <th>Account No/</th>
                   <th>Role Type</th>
                   <th>Address</th>
                   <th>action</th>

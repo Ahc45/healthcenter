@@ -9,8 +9,8 @@ class Admin extends Admin_Controller {
   	parent::__construct();
 
     $this->load->model('users_m');
-    if ( !session('is_logged_in') && !session('is_customer') ) {
-        //redirect('login');
+    if ( !session('is_logged_in') ) {
+        redirect('login');
       }
   }
   function index(){
@@ -22,7 +22,7 @@ class Admin extends Admin_Controller {
         'select' => 'users.id,users.first_name,users.last_name,users.address,users.account_no,users.account_type',
     );
     $this->data['admins'] = $this->users_m->get_all_admins($patient_params)->result();
-    $this->load->view('_admin/_includes/header',$this->data);
+    
     }
   
  

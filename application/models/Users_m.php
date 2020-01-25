@@ -137,8 +137,7 @@ class Users_M extends MY_Model
 
 	function logout()
 	{
-		$this->session->sess_destroy();
-		//var_dump(session('is_logged_in'));die();
+	//	var_dump(session('is_logged_in'));die();
 	}
 
 	function is_logged_in()

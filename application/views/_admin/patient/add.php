@@ -42,9 +42,9 @@
                 </div>
                 <div class=" row">
                   <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Address</label>
-                        <input type="text" name="address" class="form-control" id="address" placeholder="Address">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Contact No.</label>
+                        <input type="text" name="contact_no" class="form-control" id="contact_no" placeholder="Contact No">
                          <span class="help-block"></span>
                       </div>
                    </div>
@@ -65,7 +65,7 @@
                    <div class="col-md-2">
                     <div class="form-group">
                       <label>Sex</label>
-                    <select class="form-control select2" name="sex" id ="sex" multiple="multiple" data-placeholder="Select Sex"
+                    <select class="form-control select" name="sex" id ="sex" data-placeholder="Select Sex"
                               style="width: 100%;">
                         <option>Male</option>
                         <option>Female</option>
@@ -82,20 +82,36 @@
                   </div>
                 </div>
                 <div class=" row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Contact No.</label>
-                        <input type="text" name="contact_no" class="form-control" id="contact_no" placeholder="Contact No">
+                        <label for="BP">Blood Preasure</label>
+                        <input type="text" name="bp" class="form-control" id="bp" placeholder="Blood Preasure">
                          <span class="help-block"></span>
                       </div>
                    </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Account type</label>
-                      <input type="text" class="form-control" name="account_type" id="account_type" placeholder="Account type">
+                      <label for="exampleInputPassword1">Weight</label>
+                      <input type="text" class="form-control" name="weight" id="Weight" placeholder="50klg">
                        <span class="help-block"></span>
                     </div>
                   </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="height">Height</label>
+                        <input type="text" name="height" class="form-control" id="height" placeholder="5'6">
+                         <span class="help-block"></span>
+                      </div>
+                   </div>
+                </div>
+                <div class=" row">
+                  <div class="col-md-12">
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Address</label>
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Address">
+                         <span class="help-block"></span>
+                      </div>
+                   </div>
                 </div>
                 <hr>
                  <div class=" row">
