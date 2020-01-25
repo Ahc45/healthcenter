@@ -4,7 +4,7 @@
       <div class="col-md-6"> 
       <h1>
         Vaccines
-        <small> List patient</small>
+        <small> Patient list</small>
       </h1>
     </div>
      
@@ -59,7 +59,7 @@
                       <h5 class="widget-user-desc">MOTHER: <?php echo $vacc->mother?></h5>  
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('vaccine/history').'?id='. $vacc->id?>"  class="btn btn-warning  outline">Proceed</a>
+                        <a href="<?php echo base_url('vaccine/history').'?id='. $vacc->id?>"  class="btn btn-danger  outline">Proceed</a>
                     </div>
                   </div>
                 </div>

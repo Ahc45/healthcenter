@@ -62,12 +62,42 @@ class Vaccine extends Admin_Controller {
 			));
 		}	
     }
-    function view_history(){
+    function history(){
   		$this->data['title'] = "Vaccine Record";
-	  	$this->data['main_content'] = $this->base_temp.'/vaccine_history';
-	 	$this->load->model('vaccine_m');
-	 	$this->data['all_vaccine'] =$this->vaccine_m->get_all();
-	 	//print_r('<pre>'); print_r($all_vaccine); die();
+	  	$this->data['main_content'] = $this->base_temp.'/vaccine_record';
+	 	$this->load->model('vaccine_record_m');
+	 	
+	 	$params = array(
+	 		'vacc_id' => get('id'),
+	 	);
+	 	$this->data['all_vaccine_record'] =  $this->vaccine_record_m->get_all($params);
+	 	// print_r('<pre>'); print_r($this->db->last_query()); die();
 	 	$this->load->view('_admin/_includes/header',$this->data);    	
+    }
+    function validate_vaccine_record(){
+
+    	$this->load->model('vaccine_record_m');
+	  	$this->form_validation->set_rules('immunazation', 'Immunazation.', 'trim|required');
+		$this->form_validation->set_rules('assesment', 'Assesment', 'trim');
+		if($this->form_validation->run() == FALSE){
+			echo json_encode(array(
+				'is_valid'=> false,
+				'errors'=> $this->form_validation->error_array(),
+			));
+		}else{		
+			$vaccine_params = array(
+				'immunation' => post('immunazation'),
+				'assesment' => post('assesment'),
+				'follow_up' => post('follow_up'),
+				'vaccine_id' => post('vacc_id'),
+			);
+			$this->vaccine_record_m->save($vaccine_params);
+				// print_r($this->db->last_query()); 
+			echo json_encode(array(
+				'is_valid'=> true,
+				'info'=> $vaccine_params,
+			));
+		}	
+
     }
 }

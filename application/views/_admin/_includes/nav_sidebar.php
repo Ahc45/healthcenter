@@ -41,7 +41,7 @@
             <li class=""><a href="index2.html"><i class="fa fa-circle-o"></i>FAMILY #</a></li>
           </ul>
         </li>
-        <li class="treeview <?php echo ($this->uri->segment(1) == "admin") ? 'active' : '' ?>">
+        <li class="treeview <?php echo ($this->uri->segment(1) == "Admin") ? 'active' : '' ?>">
           <a href="#">
             <i class="glyphicon glyphicon-user"></i> <span>ADMIN</span>
             <span class="pull-right-container">
@@ -49,11 +49,11 @@
             </span>
           </a>
           <ul class="treeview-menu ">
-            <li class=""><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>ADMINS</a></li>
+            <li class=""><a href="<?php echo base_url('Admin')?>"><i class="fa fa-circle-o"></i>ADMINS</a></li>
             <li><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>BHW</a></li>
           </ul>
         </li>
-        <li>
+        <li  class=" <?php echo ($this->uri->segment(1) == "checkup") ? 'active' : '' ?> ">
             <a href="<?php echo base_url('checkup')?>"><i class="glyphicon glyphicon-plus"></i> <span>CHECK UP</span></a>
         </li>
         <li>
