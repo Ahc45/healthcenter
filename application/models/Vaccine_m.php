@@ -12,5 +12,11 @@ class Vaccine_m extends MY_Model
 	 	$this->db->order_by('id', 'DESC');
 	 	return $this->db->get($this->_table_name)->result();
 	 }
+	 function get_like($param){
+	 	$this->db->select('*');
+	 	$this->db->like('name',$param);
+	 	return $this->db->get($this->_table_name)->result();
+	
+	 }	
 
 }

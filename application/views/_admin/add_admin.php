@@ -13,7 +13,7 @@
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="Patience_no">Account No</label>
-                        <input type="text" class="form-control"  id="account_no" name="account_no" value="<?php echo (isset($users_data)? $users_data->account_no : $account_no)?>">
+                        <input type="text" class="form-control"  id="account_no" name="account_no" value="<?php echo (isset($users_data)? $users_data->account_no : $account_no)?>" readonly>
                          <span class="help-block"></span>
                       </div>
                    </div>
@@ -41,15 +41,9 @@
                     </div>
                   </div>
                 </div>
+
                 <div class=" row">
                   <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Address</label>
-                        <input type="text" name="address" class="form-control" value="<?php echo (isset($users_data)? $users_data->email : '')?>" id="address" placeholder="Address">
-                         <span class="help-block"></span>
-                      </div>
-                   </div>
-                  <div class="col-md-3">
                      <div class="form-group">
                       <label>Date:</label>
 
@@ -63,7 +57,7 @@
                       <!-- /.input group -->
                     </div>
                   </div>
-                   <div class="col-md-3">
+                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Sex</label>
                       <select class="form-control " name="sex" id ="sex"  data-placeholder="Select Sex"
@@ -75,6 +69,16 @@
                     </div>
                   </div>
                 </div>
+                <div class=" row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Address</label>
+                        <input type="text" name="address" class="form-control" value="<?php echo (isset($users_data)? $users_data->email : '')?>" id="address" placeholder="Address">
+                         <span class="help-block"></span>
+                      </div>
+                   </div>
+                  </div>
+                  
                 <div class=" row">
                   <div class="col-md-6">
                       <div class="form-group">
@@ -91,24 +95,23 @@
                         <option <?php echo (isset($users_data) && $users_data == "Admin" ? "selected" : '')?> >Admin</option>
                         <option <?php echo (isset($users_data) && $users_data == "Midwife" ? "selected" : '')?> >Midwife</option>
                         <option <?php echo (isset($users_data) && $users_data == "BHW" ? "selected" : '')?> >BHW</option>
-                        <option <?php echo (isset($users_data) && $users_data == "DOCTOR" ? "selected" : '')?> >DOCTOR</option>
                       </select>
                   </div>
                 </div>
               </div>
                 <hr>
-                 <div class=" row">
+                <div class=" row">
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Username</label>
-                        <input type="text" class="form-control" value="<?php echo (isset($users_data)? $users_data->username : '')?>"  name="username" id="username" placeholder="Username">
+                        <input type="text" class="form-control" value="<?php echo (isset($users_data)? $users_data->username : '')?>"  name="username" id="username" placeholder="Username" readonly>
                          <span class="help-block"></span>
                       </div>
                    </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="text" class="form-control"  value="<?php echo (isset($users_data)? $users_data->password : $account_no)?>"  name="password" id="password">
+                      <input type="text" class="form-control"  value="<?php echo (isset($users_data)? $users_data->password : $account_no)?>"  name="password" id="password" readonly>
                        <span class="help-block"></span>
                     </div>
                   </div>

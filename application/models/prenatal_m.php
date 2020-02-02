@@ -7,7 +7,7 @@ class Prenatal_m extends MY_Model
 	protected $_order_by = 'id';
 	protected $_timestamps = TRUE;
 
-	function patient_history($params){
+	function get_record($params){
 		$this->_filter($params);
 		$this->joins($params);
 		if ( array_key_exists('select', $params) && $params['select'] !=null ) {
@@ -21,7 +21,10 @@ class Prenatal_m extends MY_Model
 
 	function _filter($params){
 		if(array_key_exists('patient_no', $params)){
-			$this->db->where('patients.patient_no',$params['patient_no']);
+			$this->db->where('prenatal.patient_no',$params['patient_no']);
+		}
+		if(array_key_exists('group_by', $params)){
+			$this->db->group_by($params['group_by'], 'DESC');
 		}
 
 	}

@@ -17,7 +17,7 @@ class Vaccine_record_m extends MY_Model
 
 		if ( array_key_exists('vacc_id', $params) && $params['vacc_id'] !=null ) {
 			$this->db->where('vaccine_id',$params['vacc_id']);
+			}
 		}
-	 }
 
 }

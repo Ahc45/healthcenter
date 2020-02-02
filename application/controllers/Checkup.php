@@ -50,8 +50,8 @@ class Checkup extends Admin_Controller {
 
      if(session('account_type')!= "DOCTOR"){
         $this->form_validation->set_rules('patient_no', 'Patient No.', 'trim|required');
-        $this->form_validation->set_rules('weight', 'weight', 'trim|required');
-        $this->form_validation->set_rules('height', 'height', 'trim|required');
+        // $this->form_validation->set_rules('weight', 'weight', 'trim|required');
+        // $this->form_validation->set_rules('height', 'height', 'trim|required');
     }
       if(session('account_type')== "DOCTOR"){
          $this->form_validation->set_rules('findings', 'Findigs', 'trim|required');

@@ -12,7 +12,7 @@
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="Patience_no">Patient No</label>
-                        <input type="text" class="form-control"  id="patient_no" name="patient_no" value="<?php echo $patient_no?>">
+                        <input type="text" class="form-control"  id="patient_no" name="patient_no" value="<?php echo $patient_no?>" readonly >
                          <span class="help-block"></span>
                       </div>
                    </div>
@@ -118,14 +118,14 @@
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Username</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" readonly >
                          <span class="help-block"></span>
                       </div>
                    </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="text" class="form-control" name="password" id="password" value="<?php echo $patient_no?>">
+                      <input type="text" class="form-control" name="password" id="password" value="<?php echo $patient_no?>" readonly>
                        <span class="help-block"></span>
                     </div>
                   </div>

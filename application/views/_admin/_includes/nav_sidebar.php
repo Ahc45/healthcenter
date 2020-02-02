@@ -4,7 +4,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-           <img src="<?php echo base_url()?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+           <img src="<?php echo base_url()?>assets/img/logo.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo session('name');?></p>
@@ -37,8 +37,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<?php echo base_url('patient')?>"><i class="fa fa-circle-o"></i>PATIENT LIST</a></li>
-            <li class=""><a href="index2.html"><i class="fa fa-circle-o"></i>FAMILY #</a></li>
+            <li class= "<?php echo ($this->uri->segment(2) != "familynumber") ? 'active' : '' ?>"><a href="<?php echo base_url('patient')?>"><i class="fa fa-circle-o"></i>PATIENT LIST</a></li>
+            <li class= "<?php echo ($this->uri->segment(2) == "familynumber") ? 'active' : '' ?>"><a href="<?php echo base_url('patient/familynumber')?>"><i class="fa fa-circle-o"></i>FAMILY NO.</a></li>
           </ul>
         </li>
         <li class="treeview <?php echo ($this->uri->segment(1) == "Admin") ? 'active' : '' ?>">
@@ -56,11 +56,14 @@
         <li  class=" <?php echo ($this->uri->segment(1) == "checkup") ? 'active' : '' ?> ">
             <a href="<?php echo base_url('checkup')?>"><i class="glyphicon glyphicon-plus"></i> <span>CHECK UP</span></a>
         </li>
-        <li>
-            <a href="<>"><i class="fa fa-stethoscope"></i> <span>PRE NATAL</span></a>
+        <li class=" <?php echo ($this->uri->segment(1) == "prenatal") ? 'active' : '' ?> ">
+            <a href="<?php echo base_url('prenatal')?>"><i class="fa fa-stethoscope"></i> <span>PRE NATAL</span></a>
         </li>
         <li class=" <?php echo ($this->uri->segment(1) == "vaccine") ? 'active' : '' ?>">
             <a href="<?php echo base_url('vaccine')?>"><i class="fa fa-plus-square"></i> <span>VACINE</span></a>
+        </li>
+        <li class=" <?php echo ($this->uri->segment(1) == "announcement") ? 'active' : '' ?>">
+            <a href="<?php echo base_url('announcement')?>"><i class="fa fa-bullhorn"></i> <span>Announcement</span></a>
         </li>
        <!--  <li>
             <a href="<>"><i class=""></i> <span>SCHEDULES</span></a>

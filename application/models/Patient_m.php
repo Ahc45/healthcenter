@@ -90,6 +90,7 @@ class Patient_M extends MY_Model
 
 	function get_all_patient($params){
 		$this->_filter($params);
+		$this->joins($params);
 		if ( array_key_exists('select', $params) && $params['select'] !=null ) {
 			$this->db->select($params['select']);
 		}else{
@@ -102,7 +103,19 @@ class Patient_M extends MY_Model
 		if(array_key_exists('patient_no', $params)){
 			$this->db->where('patients.patient_no',$params['patient_no']);
 		}
+		if(array_key_exists('is_deleted', $params)){
+			$this->db->where('patients.is_deleted',$params['is_deleted']);
+		}
+		if(array_key_exists('gender', $params)){
+			$this->db->where('patients.gender',$params['gender']);
+		}
 
+	}
+	function joins($params){
+
+		if(array_key_exists('join', $params)){
+			$this->db->join($params['join'], $params['join'].'.id ='. $this->_table_name. '.family_number' , 'left');
+		}
 	}
 
 	public $login_rules = array(
@@ -167,6 +180,8 @@ class Patient_M extends MY_Model
 	{
 		return hash('sha512', $string . config_item('encryption_key'));
 	}
+
+
 
 
 }

@@ -53,11 +53,6 @@ function validate_login()
     }
   }
 
-  function logout()
-  {
-    die(); 
-  //   $this->session->sess_destroy(); 
-  //   var_dump($this->users_m->is_logged_in()); 
-  }
+  
 
 }

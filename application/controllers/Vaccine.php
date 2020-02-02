@@ -100,4 +100,12 @@ class Vaccine extends Admin_Controller {
 		}	
 
     }
+    function search(){
+    	$this->data['title'] = "Vaccine List";
+	  	$this->data['main_content'] = $this->base_temp.'/view';
+	 	$this->load->model('vaccine_m');
+	 	$this->data['all_vaccine'] =$this->vaccine_m->get_Like(post('search'));
+	 	//print_r('<pre>'); print_r($this->db->last_query()); die();
+	 	$this->load->view('_admin/_includes/header',$this->data);
+    }
 }

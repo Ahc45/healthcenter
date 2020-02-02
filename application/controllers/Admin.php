@@ -97,6 +97,13 @@ class Admin extends Admin_Controller {
       $this->load->view('_admin/_includes/header',$this->data);
 
     }
+    function logout()
+   {
+    //die(); 
+    $this->session->sess_destroy(); 
+    redirect(base_url('login'));
+    //var_dump($this->users_m->is_logged_in()); 
+  }
 
 
 }
