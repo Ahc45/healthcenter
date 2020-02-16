@@ -30,8 +30,8 @@
         <li class=" <?php echo ($this->uri->segment(1) == "dashboard") ? 'active' : '' ?>">
             <a href="<?php echo base_url('dashboard')?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
-        <li class="treeview <?php echo ($this->uri->segment(1) == "patient") ? 'active' : '' ?>">
-          <a href="<?php echo base_url('admin')?>"><i class="fa fa-users"></i> <span>PATIENT LIST</span></a>
+        <li class="<?php echo ($this->uri->segment(1) == "patient") ? 'active' : '' ?>">
+          <a href="<?php echo base_url('patient')?>"><i class="fa fa-users"></i> <span>PATIENT LIST</span></a>
         </li>
         <?php if(session('account_type') != "BHW"):?> 
         <li class="treeview <?php echo ($this->uri->segment(1) == "Admin") ? 'active' : '' ?>">
