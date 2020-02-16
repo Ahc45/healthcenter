@@ -34,6 +34,7 @@ function __autoload($classname)
 */
 $config['base_url'] = 'http://localhost:81/healthcenter/';
 
+// $config['base_url'] = 'http://almanzauno.cytechnlgy.com/';
 /*
 |--------------------------------------------------------------------------
 | Index File

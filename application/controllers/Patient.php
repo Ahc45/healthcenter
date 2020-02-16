@@ -12,8 +12,11 @@ class Patient extends Admin_Controller {
 	  public function __construct(){
 	  	parent::__construct();
 		  if ( !session('is_logged_in') ) {
-	        redirect('login');
-	      }
+		        redirect('login');
+		      }
+		    if (session('is_patient') ) {
+       redirect('frontend');
+      }
 	  }
 	   function index()
 	  {
@@ -26,7 +29,7 @@ class Patient extends Admin_Controller {
 	 			'join' => 'familynumbers',
 	 	);
 	 	$this->data['patients'] = $this->patient_m->get_all_patient($patient_params)->result();
-	 	//print_r("<pre>"); print_r($this->data['patients']); die();
+	 	// print_r("<pre>"); print_r($this->db->last_query()); die();
 	 	$this->load->view('_admin/_includes/header',$this->data);
 	  }
 
@@ -80,8 +83,8 @@ class Patient extends Admin_Controller {
 				$this->session->set_flashdata('message', 'show');
 				redirect(base_url('patient'));
 			}else{
-				$this->load->library('encryption');
-				$pass = $this->encryption->encrypt(post('password'));
+				
+			    $pass = $this->users_m->hash(post('password'));
 
 				$patient_params = array(
 					'patient_no' => post('patient_no'),

@@ -1,19 +1,25 @@
   var base_url = $('#base_url').val();
   console.log(base_url);
   $(function () {
-    $('#example1').DataTable()
+    $('#example1').DataTable();
+
+    $('#example2').DataTable()
     $('#patientlist').DataTable({
       'paging'      : false,
       'searching'   : true,
-      'autoWidth'   : false
-    });
+      'autoWidth'   : false,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+  
 
-    //  $('#birthday').datepicker({
-    //   autoclose: true,
-    //   dateFormat: "yyyy-mm-dd"
-    // });;
+    });
     $('.select2').select2();
-     
+
+  //   CKEDITOR.replace('body')
+  //    baseFloatZIndex: 10005
+  //   $('.textarea').wysihtml5()
   });
 
    $('#patient_add_submit').on('submit', function(e){
@@ -46,7 +52,7 @@
           }else{
               bootbox.dialog({
                 title: "Congratulations!", 
-                message: "<p>Successfuly add new patient</p>",
+                message: "<p>Successful!</p>",
                 className: "modal-success",
                 buttons: {
                   dismiss: {
@@ -413,3 +419,54 @@ $('#prenatal-submit').on('submit', function(e){
           }
         })
       });
+$('#announcement').on('submit', function(e){
+    var p_id = $('#patient_no').val();
+       e.preventDefault();
+      var $this = $(this);
+      console.log($this);
+       $.ajax({
+          url: $this.attr('action'),
+          type: 'POST',
+          dataType: 'json',
+          data: $this.serializeArray(),
+        })
+        .fail(function(e) {
+          console.log(e.responseText)
+          console.log("error");
+        })
+        .always(function(data) {
+          console.log('submited');
+          if ( typeof data !="undefined" && !data.is_valid ) {
+              $('.form-group').removeClass('has-error');
+              $('.error-help-block').text('');
+                  var change =   $.each(data.errors, function(index, val) {
+
+                      if (val !="") {
+                          $("#" + index).parents('.form-group').addClass('has-error').find('.help-block').text(val).addClass('error-help-block');
+                      }
+                       console.log(index);
+             });
+                 
+          }else{
+              bootbox.dialog({
+                title: "Success!", 
+                message: "<p>Successfuly added!</p>",
+                className: "modal-success",
+                buttons: {
+                  dismiss: {
+                      label: "Dismiss",
+                      className: "btn-sm btn-default",
+                      callback: function () {
+                        window.location.href = base_url;
+                      }
+                    }
+                }
+
+              });
+          }
+        })
+      });
+    
+
+ 
+

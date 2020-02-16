@@ -12,17 +12,21 @@ class Admin extends Admin_Controller {
     if ( !session('is_logged_in') ) {
         redirect('login');
       }
+      if (session('is_patient') ) {
+       redirect('frontend');
+      }
   }
   function index(){
 
     $this->data['title'] = "Admin";
       $this->data['main_content'] = $this->base_temp.'admin_view';
     $this->load->model('users_m');
-    $patient_params = array(
+    $admin_params = array(
         'select' => 'users.id,users.first_name,users.last_name,users.address,users.account_no,users.account_type',
+        'is_deleted' => 0,
     );
-    $this->data['admins'] = $this->users_m->get_all_admins($patient_params)->result();
-    
+    $this->data['admins'] = $this->users_m->get_all_admins($admin_params)->result();
+    // print_r("<pre>"); print_r($this->db->last_query()); die();
     $this->load->view('_admin/_includes/header',$this->data);
     }
   
@@ -82,6 +86,30 @@ class Admin extends Admin_Controller {
         } 
 
         }
+  function updatepass(){
+      $this->form_validation->set_rules('password', 'Password', 'trim|required');
+       if($this->form_validation->run() == FALSE){
+          echo json_encode(array(
+            'is_valid'=> false,
+            'errors'=> $this->form_validation->error_array(),
+          ));
+        }else{    
+          $this->load->model('users_m');
+          $pass = $this->users_m->hash(post('password'));
+
+          $patient_params = array(
+            'username' => post('username'),
+            'password' => $pass,
+          );
+          if(post('id') && post('id') != ''){
+            $id = $this->users_m->save($patient_params,post('id'));
+          }
+          echo json_encode(array(
+            'is_valid'=> true,
+            'info'=> $patient_params,
+          ));
+      }
+  }
   function edit($id){
 
         $this->data['title'] = "Add Admin User"; 
@@ -104,6 +132,18 @@ class Admin extends Admin_Controller {
     redirect(base_url('login'));
     //var_dump($this->users_m->is_logged_in()); 
   }
+  function delete(){
+        $this->load->model('patient_m');
+    $params =array(
+      'id' => get('id'),
+      'is_deleted' => 1,
+       );
+    $this->users_m->save($params, get('id'));
+    $this->session->set_flashdata('delmessage', 'show');
+    redirect('admin');
+      
+  }
+  
 
 
 }

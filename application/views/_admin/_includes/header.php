@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="<?php echo base_url()?>assets/bower_components/select2/dist/css/select2.min.css">
   <!-- Google Font -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+   
   </head> 
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -284,9 +285,9 @@
               </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <!-- <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                </div> -->
                 <div class="pull-right">
                   <a href="<?php echo base_url('admin/logout')?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
@@ -295,11 +296,109 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a  class="btn btn-primary" data-toggle="modal" href="#settings"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
       </div>
     </nav>
   </header>
 
+
   <?php $this->load->view('_admin/_includes/nav_sidebar')?>
+
+            <div class="modal fade" id="settings" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="box box-info">
+                          <form role="form" action="<?php echo base_url('Admin/updatepass')?>" id="update_admin"  >
+                                 <input type="hidden" name="id"  value="<?php echo session('user_id')?>">
+
+                                  <div class=" row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Username</label>
+                                          <input type="text" class="form-control" value="<?php echo session('username')?>"  name="username" id="username" placeholder="Username" readonly>
+                                           <span class="help-block"></span>
+                                        </div>
+                                     </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control"  value="<?php echo session('password')?>"  name="password" id="password" placeholder="12345678">
+                                         <span class="help-block"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  
+                                <div class="box-footer">
+                                   <input type="submit" class="btn btn-primary" value="Submit">
+                                </div>
+                          </form>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+         </div>
+         <script type="text/javascript">
+           $('#update_admin').on('submit', function(e){
+           e.preventDefault();
+          var $this = $(this);
+          console.log($this);
+           $.ajax({
+              url: $this.attr('action'),
+              type: 'POST',
+              dataType: 'json',
+              data: $this.serializeArray(),
+            })
+            .fail(function(e) {
+              console.log(e.responseText)
+              console.log("error");
+            })
+            .always(function(data) {
+              console.log('submited');
+              if ( typeof data !="undefined" && !data.is_valid ) {
+                  $('.form-group').removeClass('has-error');
+                  $('.error-help-block').text('');
+                      var change =   $.each(data.errors, function(index, val) {
+
+                          if (val !="") {
+                              $("#" + index).parents('.form-group').addClass('has-error').find('.help-block').text(val).addClass('error-help-block');
+                          }
+                           console.log(index);
+                 });
+                     
+              }else{
+                  bootbox.dialog({
+                    title: "Congratulations!", 
+                    message: "<p>Successfuly updated your profile</p>",
+                    className: "modal-success",
+                    buttons: {
+                      dismiss: {
+                          label: "Dismiss",
+                          className: "btn-sm btn-default",
+                          callback: function () {
+                            window.location.href = base_url+"dashboard";
+                          }
+                        }
+                    }
+
+                  });
+              }
+            })
+          });
+         </script>>

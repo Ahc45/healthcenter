@@ -18,5 +18,25 @@
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head> 
 </head>
-<body class="hold-transition login-page">
-<?php $this->load->view('_admin/login/login_body') ?>
+<body class="hold-transition skin-blue layout-top-nav login-page">
+
+ <!--  <header class="main-header " style="background-color:black"  >
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="<?php echo base_url()?>" class="navbar-brand"><b>Almanza</b> Uno</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ><a href="#">Anouncement</a></li>
+            <li><a href="<?php echo base_url('login/about')?>">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header> -->
+<?php $this->load->view($main_content) ?>

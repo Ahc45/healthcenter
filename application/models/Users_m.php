@@ -118,11 +118,15 @@ class Users_M extends MY_Model
 			$user_data = array(
 				'user_id' => $user->id,
 				'name' => $user->first_name . ' ' . $user->last_name,
+				'first_name' => $user->first_name,
+				'last_name' => $user->last_name,
 				'username' => $user->username,
 				'email' => $user->email,
 				'contact_no' => $user->contact_no,
 				'account_type' => $user->account_type,
 				'account_no' => $user->account_no,
+				'gender' => $user->gender,
+				'address' => $user->address,
 				'is_admin' => true,
 				'is_logged_in' => true,
 				'created' => $user->created,
@@ -155,6 +159,7 @@ class Users_M extends MY_Model
 	}
 
 	function get_all_admins($params){
+		$this->_filters($params);
 		if ( array_key_exists('select', $params) && $params['select'] !=null ) {
 			$this->db->select($params['select']);
 		}else{
@@ -173,6 +178,10 @@ class Users_M extends MY_Model
 		return $this->db->get($this->_table_name)->row();
 	}
 	function _filters($params){
+
+		if ( array_key_exists('is_deleted', $params) ) {
+			$this->db->where('is_deleted',$params['is_deleted']);
+		}
 
 		if ( array_key_exists('id', $params) && $params['id'] !=null ) {
 			$this->db->where('users.id',$params['id']);

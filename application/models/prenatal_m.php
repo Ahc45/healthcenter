@@ -34,4 +34,13 @@ class Prenatal_m extends MY_Model
 			$this->db->join($params['join'], $params['join'].'.patient_no ='. $this->_table_name. '.patient_no' , 'left');
 		}
 	}
+	function count(){
+      	
+			$this->db->select('*');
+			$this->db->where('prenatal.is_deleted', 0 );
+			$this->db->group_by('prenatal.patient_no', 'DESC');
+
+		return $this->db->get($this->_table_name);
+    }
+
 }

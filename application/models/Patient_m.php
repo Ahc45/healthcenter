@@ -135,7 +135,7 @@ class Patient_M extends MY_Model
 	{
 		$user = $this->get_by(array(
 			'username' => post('username'),
-			'password' => post('password'),
+			'password' => $this->hash(post('password')),
 			'is_deleted' => 0,
 		), TRUE);
 		
@@ -150,18 +150,24 @@ class Patient_M extends MY_Model
 		if ( count($user) ) {
 			$user_data = array(
 				'user_id' => $user->id,
+				'patient_no' => $user->patient_no,
 				'name' => $user->first_name . ' ' . $user->last_name,
 				'username' => $user->username,
-				'email' => $user->email,
+				#'email' => $user->email,
 				'contact_no' => $user->contact_no,
+				'age' => $user->age,
+				'bp' => $user->bp,
+				'birthday' => date('M d, y', strtotime($user->birthday) ),
+				'address' => $user->address,
+				'created' =>  date('M d, y', strtotime($user->created) ) ,
 				'account_type' => $user->account_type,
-				'is_admin' => true,
+				'is_patient' => true,
 				'is_logged_in' => true
 			);
 
 			$this->session->set_userdata($user_data);
 
-			unset($_SESSION['is_customer']);
+			unset($_SESSION['is_admin']);
 			return $user;
 		}
 	}
@@ -182,6 +188,12 @@ class Patient_M extends MY_Model
 	}
 
 
+	function count(){
+      	
+			$this->db->select('*');
+			$this->db->where('is_deleted', 0 );
 
+		return $this->db->get($this->_table_name);
+    }
 
 }

@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.18
     </div>
-    <strong>Copyright &copy; <a href="<? echo base_url()?>">Almanza Uno Health Center</a>.</strong> All rights
+    <strong>Copyright &copy; <a href="<?php echo base_url()?>">Almanza Uno Health Center</a>.</strong> All rights
     reserved.
   </footer>
 </div>

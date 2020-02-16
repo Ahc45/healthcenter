@@ -10,8 +10,11 @@ class Checkup extends Admin_Controller {
 
     $this->load->model('checkup_m');
     $this->load->model('users_m');
-    if ( !session('is_logged_in') && !session('is_customer') ) {
+  if ( !session('is_logged_in') ) {
         redirect('login');
+      }
+     if (session('is_patient') ) {
+       redirect('frontend');
       }
   }
   function index(){

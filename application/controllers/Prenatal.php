@@ -10,8 +10,11 @@ class Prenatal extends Admin_Controller {
 
     $this->load->model('checkup_m');
     $this->load->model('users_m');
-    if ( !session('is_logged_in') && !session('is_customer') ) {
+  if ( !session('is_logged_in') ) {
         redirect('login');
+      }
+if (session('is_patient') ) {
+       redirect('frontend');
       }
   }
   function index(){
@@ -71,12 +74,33 @@ class Prenatal extends Admin_Controller {
       }else{    
         $this->load->model('prenatal_m');
         $checkup_params = array(
-          'patient_no'  => post('patient_no'),
-          'fp_counseling' => post('fp_counseling'),
-          'with_philhealth' => post('with_philhealth'),
-          'philhealth' => post('philhealth'),
-          'birth_plan' => post('birth_plan'),
-          'prenatal_note' => post('prenatal_note'),
+            'patient_no' => post('patient_no'),
+            'ob_history' => post('ob_history'),
+            'lmp' => post('lmp'),
+            'edc' => post('edc'),
+            'aog'  => post('aog'),
+            'fht' => post('fht'),
+            'fhb' => post('fhb'),
+            'pos' => post('pos'),
+            'pres' => post('pres'),
+            'tt_record' => post('tt_record'),
+            'hr_code' => post('hr_code'),
+            'last_delivery' => post('last_delivery'),
+            'place_last_delivery'  => post('place_last_delivery'),
+            'attent_by' => post('attent_by'),
+            'typeofdelivery' => post('typeofdelivery'),
+            'blood_type' => post('blood_type'),
+            'micoronutients_given' => post('micoronutients_given'),
+            'mg_date_given' => post('mg_date_given'),
+            'food_suplement' => post('food_suplement'),
+            'fs_date_given'  => post('fs_date_given'),
+            'dental_checkup' => post('dental_checkup'),
+            'treatment_given' => post('treatment_given'),
+            'date_of_visit' => post('date_of_visit'),
+            'FSN' => post('FSN'),
+            'ap_no' => post('ap_no'),
+            'prenatal_note' => post('prenatal_note'),
+            'hgb' => post('hgb'),
         );
         $this->prenatal_m->save($checkup_params);
           // print_r($this->db->last_query()); 
@@ -85,5 +109,5 @@ class Prenatal extends Admin_Controller {
           'info'=> $checkup_params,
         ));
       }
-  }
+    }
   }

@@ -58,10 +58,9 @@
                 <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Family Number</th>
-                  <th>Pateince No</th>
-                  <th>Address</th>
-                  <th>action</th>
+                  <th>Patient No</th>
+                  <th>Address</th><?php if(session('account_type') != "BHW"):?> 
+                  <th>action</th><?php endif ?>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,10 +68,9 @@
                 <?php if(isset($patients) && $patients != null): ?>
                 <?php foreach ($patients as $i => $ps): ?>
                     <td><?php echo $ps->first_name.' '. $ps->last_name?></td>
-                    <td><?php echo $ps->fam_id?></td>
                     <td><?php echo $ps->patient_no?></td>
                     <td><?php echo $ps->address?></td>
-                    <td> <button data-target="#update-<?php echo $ps->patient_no?>" id="update-btn"  data-toggle="modal" type="button" class="btn btn-success" data-toggle="modal" >
+                    <?php if(session('account_type') != "BHW"):?> <td> <button data-target="#update-<?php echo $ps->patient_no?>" id="update-btn"  data-toggle="modal" type="button" class="btn btn-success" data-toggle="modal" >
                       <i class="glyphicon glyphicon-pencil"></i></button> 
                       <button data-target="#delete-<?php echo $ps->patient_no?>"  data-toggle="modal"  class = "btn btn-danger"><i class="glyphicon glyphicon-trash"></i> </button>
                        <div class="modal fade" id="delete-<?php echo $ps->patient_no?>">
@@ -93,7 +91,7 @@
                                 </div>
                               </div>
                             </div>
-                    </td> 
+                    </td> <?php endif ?>
                           <div class="modal fade" id="update-<?php echo $ps->patient_no?>">
                               <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -229,7 +227,7 @@
                               </div>
                               <!-- /.modal-dialog -->
                         </div>
-               
+                
                 </tr>
                 <?php endforeach ?>
               <?php endif ?>

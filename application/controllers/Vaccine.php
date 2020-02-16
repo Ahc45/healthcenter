@@ -9,8 +9,11 @@ class Vaccine extends Admin_Controller {
   	parent::__construct();
 
     $this->load->model('vaccine_m');
-    if ( !session('is_logged_in') ) {
+  if ( !session('is_logged_in') ) {
         redirect('login');
+      }
+      if (session('is_patient') ) {
+       redirect('frontend');
       }
   }
   function index(){
@@ -71,7 +74,14 @@ class Vaccine extends Admin_Controller {
 	 		'vacc_id' => get('id'),
 	 	);
 	 	$this->data['all_vaccine_record'] =  $this->vaccine_record_m->get_all($params);
-	 	// print_r('<pre>'); print_r($this->db->last_query()); die();
+
+	 	$this->load->model('vaccine_m');
+	 	$v_params = array(
+	 		'id' => get('id'),
+	 	);
+	 	$this->data['record'] =  $this->vaccine_m->get_vaccine_rec($v_params);
+
+	 	//print_r('<pre>'); print_r($this->data['record']); die();
 	 	$this->load->view('_admin/_includes/header',$this->data);    	
     }
     function validate_vaccine_record(){

@@ -8,7 +8,6 @@
         </div>
         <div class="pull-left info">
           <p><?php echo session('name');?></p>
-          <?php// echo session('full_name')?>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -28,19 +27,13 @@
       <ul class="sidebar-menu" data-widget="tree">
 
         <li class="header">MAIN NAVIGATION</li>
-
-        <li class="treeview <?php echo ($this->uri->segment(1) == "patient") ? 'active' : '' ?>">
-          <a href="#">
-            <i class="fa fa-users"></i> <span>PATIENT</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class= "<?php echo ($this->uri->segment(2) != "familynumber") ? 'active' : '' ?>"><a href="<?php echo base_url('patient')?>"><i class="fa fa-circle-o"></i>PATIENT LIST</a></li>
-            <li class= "<?php echo ($this->uri->segment(2) == "familynumber") ? 'active' : '' ?>"><a href="<?php echo base_url('patient/familynumber')?>"><i class="fa fa-circle-o"></i>FAMILY NO.</a></li>
-          </ul>
+        <li class=" <?php echo ($this->uri->segment(1) == "dashboard") ? 'active' : '' ?>">
+            <a href="<?php echo base_url('dashboard')?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
+        <li class="treeview <?php echo ($this->uri->segment(1) == "patient") ? 'active' : '' ?>">
+          <a href="<?php echo base_url('admin')?>"><i class="fa fa-users"></i> <span>PATIENT LIST</span></a>
+        </li>
+        <?php if(session('account_type') != "BHW"):?> 
         <li class="treeview <?php echo ($this->uri->segment(1) == "Admin") ? 'active' : '' ?>">
           <a href="#">
             <i class="glyphicon glyphicon-user"></i> <span>ADMIN</span>
@@ -53,6 +46,7 @@
             <li><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>BHW</a></li>
           </ul>
         </li>
+        <?php endif?>
         <li  class=" <?php echo ($this->uri->segment(1) == "checkup") ? 'active' : '' ?> ">
             <a href="<?php echo base_url('checkup')?>"><i class="glyphicon glyphicon-plus"></i> <span>CHECK UP</span></a>
         </li>
@@ -60,11 +54,15 @@
             <a href="<?php echo base_url('prenatal')?>"><i class="fa fa-stethoscope"></i> <span>PRE NATAL</span></a>
         </li>
         <li class=" <?php echo ($this->uri->segment(1) == "vaccine") ? 'active' : '' ?>">
-            <a href="<?php echo base_url('vaccine')?>"><i class="fa fa-plus-square"></i> <span>VACINE</span></a>
+            <a href="<?php echo base_url('vaccine')?>"><i class="fa fa-plus-square"></i> <span>VACCINE</span></a>
         </li>
+
+        <?php if(session('account_type') != "BHW"):?> 
         <li class=" <?php echo ($this->uri->segment(1) == "announcement") ? 'active' : '' ?>">
             <a href="<?php echo base_url('announcement')?>"><i class="fa fa-bullhorn"></i> <span>Announcement</span></a>
         </li>
+        
+        <?php endif?>
        <!--  <li>
             <a href="<>"><i class=""></i> <span>SCHEDULES</span></a>
         </li> -->

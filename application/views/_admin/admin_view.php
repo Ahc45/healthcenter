@@ -5,6 +5,25 @@
       </h1>
     
     </section>
+
+    <?php if($this->session->flashdata('delmessage')):?>
+       <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title">Deleted!</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="b!tn btn-box-tool" data-widget="remove"><i class="fa fa-close"></i></button>
+                </div>
+                <!-- /.box-tools -->
+              </div>
+            </div>
+            <!-- /.box -->
+          </div>
+      </div>
+
+    <?php endif?>
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -21,8 +40,8 @@
                   <th>Name</th>
                   <th>Account No/</th>
                   <th>Role Type</th>
-                  <th>Address</th>
-                  <th>action</th>
+                  <th>Address</th><?php if(session('account_type') != "BHW"):?> 
+                  <th>action</th><?php endif ?>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,7 +52,9 @@
                     <td><?php echo $adm->account_no?></td>
                     <td><?php echo $adm->account_type?></td>
                     <td><?php echo $adm->address?></td>
-                    <td><a href="<?php echo base_url('admin/edit/'.$adm->id)?>"class = "btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a>  <a href="#" class = "btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+                   <?php if(session('account_type') != "BHW"):?> <td><a href="<?php echo base_url('admin/edit/'.$adm->id)?>"class = "btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a> 
+                     <a href="<?php echo base_url('admin/delete').'?id='.$adm->id ?>" class = "btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                   </td><?php endif ?>
                   </tr>
                 <?php endforeach ?>
               <?php endif ?>
