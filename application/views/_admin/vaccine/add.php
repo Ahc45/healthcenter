@@ -68,14 +68,14 @@
                 <div class=" row">
                   <div class="col-md-6">
                       <div class="form-group">
-                        <label for="birth_wt">Bith WT</label>
+                        <label for="birth_wt">Birth WT</label>
                         <input type="text" name="birth_wt" class="form-control" id="birth_wt" >
                         <span class="help-block"></span>
                       </div>
                    </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="tt_satatus">TT Sattus</label>
+                      <label for="tt_satatus">TT Satatus</label>
                       <input type="text" class="form-control" name="tt_satatus" id="tt_satatus" >
                       <span class="help-block"></span>
                     </div>

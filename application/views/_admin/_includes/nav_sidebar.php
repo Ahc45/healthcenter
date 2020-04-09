@@ -43,7 +43,6 @@
           </a>
           <ul class="treeview-menu ">
             <li class=""><a href="<?php echo base_url('Admin')?>"><i class="fa fa-circle-o"></i>ADMINS</a></li>
-            <li><a href="<?php echo base_url('admin')?>"><i class="fa fa-circle-o"></i>BHW</a></li>
           </ul>
         </li>
         <?php endif?>

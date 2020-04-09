@@ -32,5 +32,10 @@ class Announcement_m extends MY_Model
 		}
 
 	}
+	function delete($id){
+		$this->db->where('id', $id);
+		$this->db->delete($this->_table_name);
+
+	}
 
 }

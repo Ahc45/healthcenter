@@ -23,7 +23,8 @@ class Checkup extends Admin_Controller {
     $this->data['main_content'] = $this->base_temp.'checkup/view';
     $this->load->model('patient_m');
     $patient_params = array(
-        'select' => 'patients.id,patients.first_name,patients.last_name,patients.address,patients.patient_no',
+        'select' => 'patients.*',
+        'is_deleted' => 0,
     );
     $ch_params = array(
         'select' => 'patients.first_name,patients.last_name,check_up.blood_p,check_up.weight,check_up.findings,check_up.created',
@@ -32,6 +33,7 @@ class Checkup extends Admin_Controller {
     );
     $this->data['ch_history'] = $this->checkup_m->patient_history($ch_params)->result();
     $this->data['patients'] = $this->patient_m->get_all_patient($patient_params)->result();
+    // print_r("<pre>"); print_r($this->db->last_query()); die();
     $this->load->view('_admin/_includes/header',$this->data);
     }
 
@@ -43,6 +45,7 @@ class Checkup extends Admin_Controller {
     $this->load->model('patient_m');
     $patient_params = array(
         'select' => 'patients.id,patients.first_name,patients.last_name,patients.address,patients.patient_no',
+        'is_deleted' => 0,
     );
     $this->data['input'] = true;
     $this->data['patients'] = $this->patient_m->get_all_patient($patient_params)->result();
@@ -101,6 +104,7 @@ class Checkup extends Admin_Controller {
     $this->load->model('patient_m');
     $patient_params = array(
         'select' => 'patients.id,patients.first_name,patients.last_name,patients.address,patients.patient_no',
+        'is_deleted' => 0,
     );
     $this->data['patients'] = $this->patient_m->get_all_patient($patient_params)->result();
     //print_r($this->data['ch_history']); die();

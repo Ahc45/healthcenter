@@ -36,7 +36,7 @@ class Checkup_m extends MY_Model
 			$this->db->select('check_up.*');
 			$this->db->where('patients.is_deleted', 0 );
 			$this->db->join('patients','check_up.patient_no = patients.patient_no','left');
-			$this->db->group_by('patient_no', 'DESC');
+			$this->db->group_by('check_up.patient_no', 'DESC');
  		return $this->db->get($this->_table_name);
     }
     function checup_data($params){

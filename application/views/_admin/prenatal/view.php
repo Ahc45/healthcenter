@@ -1,3 +1,14 @@
+      <style>
+        @media print {
+          .nav,.nav-tabs{
+            display: none;
+          }
+          .btn{
+            display: none;
+          }
+        }
+      </style>
+
         <div class="row">
 
 
@@ -8,7 +19,7 @@
 
               <li class="pull-left header"><i class="fa fa-th"></i><?php  echo $title?></li>
               <li class="<?php echo (!isset($input) && !isset($history)? "active" : "" )?>"><a href="#search" data-toggle="tab">Search</a></li>
-              <li class="<?php echo (isset($input) && !isset($history) &&! isset($search)? "active": "" )?>"><a href="#input" data-toggle="tab">Prenal record</a></li>
+              <li class="<?php echo (isset($input) && !isset($history) &&! isset($search)? "active": "" )?>"><a href="#input" data-toggle="tab">Prenatal record</a></li>
               
             </ul>
             <div class="tab-content">
@@ -31,7 +42,7 @@
                           <thead>
                           <tr>
                             <th>Name</th>
-                            <th>Pateince #</th>
+                            <th>Patient No.</th>
                             <th>action</th>
                           </tr>
                           </thead>
@@ -67,7 +78,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                           <label for="Patience_no">Patient No</label>
-                                          <input type="text" class="form-control" value="<?php echo get('id')?>"  id="patient_no" name="patient_no" readonly>
+                                          <input type="text" class="form-control"   id="patient_no" name="patient_no" value="<?php echo (isset($record) && $record != null)? $record->patient_no : get('id') ?>" readonly>
                                            <span class="help-block"></span>
                                         </div>
                                      </div>
@@ -76,21 +87,21 @@
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">Date of Visit</label>
-                                              <input type="date" class="form-control" value=""  id="date_of_visit" name="date_of_visit">
+                                              <input type="date" class="form-control" value="<?php echo (isset($record) && $record != null)? date ( 'Y-m-d', strtotime($record->date_of_visit)) : ''    ?>"  id="date_of_visit" name="date_of_visit">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">FSN</label>
-                                              <input type="text" class="form-control" value=""  id="FSN" name="FSN">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->FSN : ''    ?>"  id="FSN" name="FSN">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">AP No. (if any)</label>
-                                              <input type="text" class="form-control" value=""  id="ap_no" name="ap_no">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->ap_no : ''    ?>"  id="FSN"  id="ap_no" name="ap_no">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
@@ -99,7 +110,7 @@
                                      <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="Patience_no">O.B History</label>
-                                              <input type="text" class="form-control" value=""  id="ob_history" name="ob_history">
+                                              <input type="text" class="form-control"  value="<?php echo (isset($record) && $record != null)? $record->ob_history : ''    ?>"  id="ob_history" name="ob_history">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
@@ -108,21 +119,21 @@
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">LMP</label>
-                                              <input type="text" class="form-control" value=""  id="lmp" name="lmp">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->lmp : ''    ?>"  id="lmp" name="lmp">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">EDC</label>
-                                              <input type="text" class="form-control" value=""  id="edc" name="edc">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->edc : ''    ?>"  id="edc" name="edc">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">AOG</label>
-                                              <input type="text" class="form-control" value=""  id="aog" name="aog">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->aog : ''    ?>" id="aog" name="aog">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>                                                                            
@@ -131,28 +142,28 @@
                                      <div class="col-md-3">
                                           <div class="form-group">
                                               <label for="Patience_no">FHT</label>
-                                              <input type="text" class="form-control" value=""  id="fht" name="fht">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->fht : ''    ?>"  id="fht" name="fht">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-3">
                                           <div class="form-group">
                                               <label for="Patience_no">FHB</label>
-                                              <input type="text" class="form-control" value=""  id="fhb" name="fhb">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->fhb : ''    ?>"  id="fhb" name="fhb">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-3">
                                           <div class="form-group">
                                               <label for="Patience_no">POS</label>
-                                              <input type="text" class="form-control" value=""  id="pos" name="pos">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->pos : ''    ?>" id="pos" name="pos">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>       
                                       <div class="col-md-3">
                                           <div class="form-group">
                                               <label for="Patience_no">PRES</label>
-                                              <input type="text" class="form-control" value=""  id="pres" name="pres">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->pres : ''    ?>" id="pres" name="pres">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>                                                                      
@@ -161,7 +172,7 @@
                                      <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="Patience_no">Tetanos Toxoid Record</label>
-                                              <input type="text" class="form-control" value=""  id="tt_record" name="tt_record">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->tt_record : ''    ?>"  id="tt_record" name="tt_record">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
@@ -171,21 +182,21 @@
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">HR Code (if any)</label>
-                                              <input type="text" class="form-control" value=""  id="hr_code" name="hr_code">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->hr_code : ''    ?>"  id="hr_code" name="hr_code">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">hgb Count</label>
-                                              <input type="text" class="form-control" value=""  id="hgb" name="hgb">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->hgb : ''    ?>"  id="hgb" name="hgb">
                                                <span class="help-block"></span>
                                            </div>
                                       </div> 
                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="Patience_no">Blood Type</label>
-                                              <input type="text" class="form-control" value=""  id="blood_type" name="blood_type">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->blood_type : ''?>"  id="blood_type" name="blood_type">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>                                                                                                              
@@ -194,14 +205,14 @@
                                      <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="Patience_no">Micronutrients Given</label>
-                                              <input type="date" class="form-control" value=""  id="micoronutients_given" name="micoronutients_given">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->micoronutients_given : ''?>"  id="micoronutients_given" name="micoronutients_given">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="Patience_no">Date Given</label>
-                                              <input type="text" class="form-control" value=""  id="mg_date_given" name="mg_date_given">
+                                              <input type="date" class="form-control" value="<?php echo (isset($record) && $record != null)? date ( 'Y-m-d', strtotime($record->mg_date_given))  : ''?>"  id="mg_date_given" name="mg_date_given">
                                                <span class="help-block"></span>
                                            </div>
                                       </div> 
@@ -210,14 +221,14 @@
                                      <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="Patience_no">Food Supplement Given</label>
-                                              <input type="date" class="form-control" value=""  id="food_suplement" name="food_suplement">
+                                              <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->food_suplement : ''?>"     id="food_suplement" name="food_suplement">
                                                <span class="help-block"></span>
                                            </div>
                                       </div>
                                      <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="Patience_no">Date Given</label>
-                                              <input type="text" class="form-control" value=""  id="fs_date_given" name="fs_date_given">
+                                              <input type="date" class="form-control" value="<?php echo (isset($record) && $record != null)? date ( 'Y-m-d', strtotime($record->fs_date_given)) : ''?>"     id="food_suplement"  id="fs_date_given" name="fs_date_given">
                                                <span class="help-block"></span>
                                            </div>
                                       </div> 
@@ -242,14 +253,14 @@
                                                 <div class="col-md-6">
                                                   <div class="form-group">
                                                       <label for="Patience_no">Date of last Delivery</label>
-                                                      <input type="date" class="form-control" value=""  id="last_delivery" name="last_delivery">
+                                                      <input type="date" class="form-control"  value="<?php echo (isset($record) && $record != null)? date ( 'Y-m-d', strtotime($record->last_delivery)) : ''?>"  id="last_delivery" name="last_delivery">
                                                        <span class="help-block"></span>
                                                    </div>
                                               </div>
                                               <div class="col-md-6">
                                                   <div class="form-group">
                                                       <label for="Patience_no">Place</label>
-                                                      <input type="text" class="form-control" value=""  id="place_last_delivery" name="place_last_delivery">
+                                                      <input type="text" class="form-control" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->place_last_delivery : ''?>"   id="place_last_delivery" name="place_last_delivery">
                                                        <span class="help-block"></span>
                                                    </div>
                                               </div>
@@ -257,14 +268,14 @@
                                                 <div class="col-md-6">
                                                   <div class="form-group">
                                                       <label for="Patience_no">Type of Delivery</label>
-                                                      <input type="text" class="form-control" value=""  id="typeofdelivery" name="typeofdelivery">
+                                                      <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->typeofdelivery : ''?>"  id="typeofdelivery" name="typeofdelivery">
                                                        <span class="help-block"></span>
                                                    </div>
                                               </div>
                                               <div class="col-md-6">
                                                   <div class="form-group">
                                                       <label for="Patience_no">Attended by</label>
-                                                      <input type="text" class="form-control" value=""  id="attent_by" name="attent_by">
+                                                      <input type="text" class="form-control" value="<?php echo (isset($record) && $record != null)? $record->attent_by : ''?>"   id="attent_by" name="attent_by">
                                                        <span class="help-block"></span>
                                                    </div>
                                               </div>
@@ -298,8 +309,8 @@
                                                   <label for="exampleInputPassword1">Dental Checkup done</label>
                                                     <select class="form-control" name="dental_checkup" id ="dental_checkup" data-placeholder="select"
                                                           style="width: 100%;">
-                                                    <option> Yes</option>
-                                                    <option> No</option>
+                                                    <option <?php echo (isset($record) && $record->dental_checkup == "Yes")? 'selected': ''?> > Yes</option>
+                                                    <option  <?php echo (isset($record) && $record->dental_checkup == "No")? 'selected': ''?>> No</option>
                                                   </select>
                                                 </div>
                                              </div>
@@ -332,9 +343,15 @@
                                     <!-- /.col-->
                                   </div>
                                   <!-- ./row -->
-                                <div class="box-footer">
-                                   <input type="submit" class="btn btn-primary" value="Submit">
-                                </div>
+                                  <?php if(isset($record) && empty($record)):?>
+                                      <div class="box-footer">
+                                         <input type="submit" class="btn btn-primary" value="Update">
+                                      </div>
+                                  <?php else:?>
+                                         <div class="box-footer">
+                                         <input type="submit" class="btn btn-primary" value="Submit">
+                                      </div>
+                                <?php endif ?>
                             </form>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
@@ -373,6 +390,11 @@
                                       </div>
                                     </div>
                                   </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <button id="print" type="button" class="btn btn-success btn-lg"> PRINT</button>
                                 </div>
                             </div>
                           </div>

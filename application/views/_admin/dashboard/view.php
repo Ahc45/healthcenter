@@ -336,7 +336,7 @@
                   <li>
                     <i class="fa fa-flag bg-blue"></i>
 
-                    <div class="timeline-item">
+                    <div class="timeline-item bg-success">
                       <span class="time"><i class="fa fa-clock-o"></i>
                          <?php echo date('H:i', strtotime($ann->created))?></span>
 
@@ -344,6 +344,33 @@
 
                       <div class="timeline-body">
                         <?php echo $ann->body?>
+                      </div>
+                      <div class="timeline-footer">
+                        <button type="button" class="btn btn-warning btn-small" data-toggle="modal" data-target="#exampleModalLong">
+                          DELETE
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">alert!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure you want to delete this announcement
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <a href="<?php echo base_url('announcement/delete'). '?id='.$ann->id ?>" id="del-announcement" data-id="<?php echo $ann->id?>" class="btn btn-danger">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </li>

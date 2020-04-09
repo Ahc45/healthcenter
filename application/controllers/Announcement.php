@@ -48,6 +48,18 @@ class Announcement extends Admin_Controller {
       
 	      }
 	  }	
+	function delete(){
+		$this->load->model('announcement_m');
+		$this->announcement_m->delete(get('id'));
+		// print_r(get('id'));
+		echo json_encode(
+			array(
+					'is_valid' => true,
+					'deleted' => 'deleted',
+			)
+		);
+
+	}
 
 
  }

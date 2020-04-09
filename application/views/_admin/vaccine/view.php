@@ -58,8 +58,14 @@
                       <h3><?php echo $vacc->name?></h3> 
                       <h5>MOTHER: <?php echo $vacc->mother?></h5>  
                     </div>
-                    <div class="col-md-4">
-                        <a href="<?php echo base_url('vaccine/history').'?id='. $vacc->id?>"  class="btn btn-danger  outline">Proceed</a>
+                    <div class="col-md-3">
+                        <a href="<?php echo base_url('vaccine/history').'?id='. $vacc->id?>"  class="btn btn-warning  outline">Proceed</a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            Delete
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -80,3 +86,26 @@
   </div>
   <?php endif ?>
 </section>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want tpo delete this record?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="<?php echo base_url('vaccine/delete').'?id='. $vacc->id?>"  class="btn btn-danger ">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>

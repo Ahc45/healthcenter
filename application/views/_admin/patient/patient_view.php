@@ -162,8 +162,8 @@
                                                         <label>Sex</label>
                                                       <select class="form-control select" name="sex" id ="sex" data-placeholder="Select Sex"
                                                                 style="width: 100%;">
-                                                          <option <?php echo ($ps->patient_no == "Male")? "select" : ''?>>Male</option>
-                                                          <option <?php echo ($ps->patient_no == "Female")? "select" : ''?>>Female</option>
+                                                          <option <?php echo ($ps->gender == "Male")? "selected" : ''?>>Male</option>
+                                                          <option <?php echo ($ps->gender == "Female")? "selected" : ''?>>Female</option>
                                                         </select>
                                                          <span class="help-block"></span>
                                                       </div>

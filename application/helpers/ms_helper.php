@@ -424,7 +424,7 @@ if (!function_exists('load_assets'))
 
 		$CI->load->helper('string');
 		$random_string = random_string('numeric');
-	     $random_string = '07-28-19-v15';
+	     // $random_string = '07-28-19-v15';
 
 		$paths = array(
 			'js' => array(

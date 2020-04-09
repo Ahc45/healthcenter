@@ -16,7 +16,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()?>assets/img/logo.jpg" alt="User profile picture">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()?>assets/img/logo.jpg" alt="User profile picture"> -->
 
               <h3 class="profile-username text-center"><?php echo session('name')?></h3>
 
@@ -180,10 +180,6 @@
 
                       <div class="timeline-body">
                         <?php echo $ann->body?>
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
                       </div>
                     </div>
                   </li>

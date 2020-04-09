@@ -22,9 +22,8 @@ class Dashboard extends Admin_Controller {
         $this->data['main_content'] = $this->basetemp.'/dashboard/view';
       	$this->load->model('patient_m');
 	 	$patient_params = array(
-	 			'select' => 'patients.*,familynumbers.id as fam_id',
+	 			'select' => 'patients.*',
 	 			'is_deleted' => 0,
-	 			'join' => 'familynumbers',
 	 	);
 	 	$this->data['patients'] = $this->patient_m->get_all_patient($patient_params)->result();
 	 	// print_r("<pre>"); print_r(	$this->data['patients']); die();
@@ -46,7 +45,10 @@ class Dashboard extends Admin_Controller {
     	$this->data['announcement'] = $this->announcement_m	->get_all();
 
     	$this->load->model('vaccine_m');
-    	$vaccines = $this->vaccine_m->get_all();
+    	$vaccines_params = array(
+		 		'is_deleted' => 0,
+		 );
+    	$vaccines = $this->vaccine_m->get_all($vaccines_params);
 	 	$vaccine_history = $this->vaccine_m->join_vaccine();
 	 	foreach ($vaccines as $key => $vacc) {
 	 		$vacc->history="";

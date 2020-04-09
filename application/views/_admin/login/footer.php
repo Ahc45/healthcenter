@@ -1,18 +1,15 @@
 
-<!-- jQuery 3 -->
-<script src="<?php echo base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="<?php echo base_url()?>assets/plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="<?php echo base_url()?>frontendassets/vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url()?>frontendassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="<?php echo base_url()?>frontendassets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="<?php echo base_url()?>frontendassets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="<?php echo base_url()?>frontendassets/js/creative.min.js"></script>
+
 </body>
+
 </html>

@@ -36,8 +36,10 @@ class Prenatal_m extends MY_Model
 	}
 	function count(){
       	
-			$this->db->select('*');
+			$this->db->select('prenatal.*');
 			$this->db->where('prenatal.is_deleted', 0 );
+			$this->db->where('patients.is_deleted', 0 );
+			$this->db->join('patients','patients.patient_no = '. $this->_table_name. '.patient_no' , 'left');
 			$this->db->group_by('prenatal.patient_no', 'DESC');
 
 		return $this->db->get($this->_table_name);

@@ -24,9 +24,8 @@ class Patient extends Admin_Controller {
 	  	$this->data['main_content'] = $this->basetemp.'patient/patient_view';
 	 	$this->load->model('patient_m');
 	 	$patient_params = array(
-	 			'select' => 'patients.*,familynumbers.id as fam_id',
+	 			'select' => 'patients.*',
 	 			'is_deleted' => 0,
-	 			'join' => 'familynumbers',
 	 	);
 	 	$this->data['patients'] = $this->patient_m->get_all_patient($patient_params)->result();
 	 	// print_r("<pre>"); print_r($this->db->last_query()); die();

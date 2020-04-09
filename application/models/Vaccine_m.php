@@ -7,7 +7,8 @@ class Vaccine_m extends MY_Model
 	protected $_order_by = 'id';
 	protected $_timestamps = TRUE;
 
-	 function get_all(){
+	 function get_all($params){
+	 	$this->_filter($params);
 	 	$this->db->select('*');
 	 	$this->db->order_by('id', 'DESC');
 	 	return $this->db->get($this->_table_name)->result();
@@ -36,8 +37,11 @@ class Vaccine_m extends MY_Model
 	 	return $this->db->get($this->_table_name)->row();
     }
     function _filter($params){
-    		if(array_key_exists('id', $params)){
+    	if(array_key_exists('id', $params)){
 			$this->db->where('vaccine.id',$params['id']);
+		}
+		if(array_key_exists('is_deleted', $params)){
+			$this->db->where('vaccine.is_deleted',$params['is_deleted']);
 		}
     }
 

@@ -1,7 +1,7 @@
 
     <section class="content-header">
       <h1>
-        Announcecment Editors
+        Announcement Editor
         <small>Edit your Announcement here</small>
       </h1>
     </section>

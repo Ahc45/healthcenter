@@ -73,7 +73,7 @@
                   <div class="col-md-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Address</label>
-                        <input type="text" name="address" class="form-control" value="<?php echo (isset($users_data)? $users_data->email : '')?>" id="address" placeholder="Address">
+                        <input type="text" name="address" class="form-control" value="<?php echo (isset($users_data)? $users_data->address : '')?>" id="address" placeholder="Address">
                          <span class="help-block"></span>
                       </div>
                    </div>
@@ -93,13 +93,13 @@
                         <select class="form-control" name="account_type" id ="account_type" data-placeholder="select"
                               style="width: 100%;">
                         <option <?php echo (isset($users_data) && $users_data == "Admin" ? "selected" : '')?> >Admin</option>
-                        <option <?php echo (isset($users_data) && $users_data == "Midwife" ? "selected" : '')?> >Midwife</option>
-                        <option <?php echo (isset($users_data) && $users_data == "BHW" ? "selected" : '')?> >BHW</option>
+                        <option <?php echo (isset($users_data) && $users_data == "Mid Wife" ? "selected" : '')?> >BHW</option>
                       </select>
                   </div>
                 </div>
               </div>
                 <hr>
+                <?php if($this->uri->segment(3) == ''):?>
                 <div class=" row">
                   <div class="col-md-6">
                       <div class="form-group">
@@ -116,6 +116,7 @@
                     </div>
                   </div>
                 </div>
+              <?php endif?>
                 
                 
               <div class="box-footer">

@@ -43,14 +43,17 @@ class Admin extends Admin_Controller {
 
    function validate()
    {
+
+      if(!post('id') && !post('id') != null){
+      $this->form_validation->set_rules('username', 'Username', 'trim|required');
+      $this->form_validation->set_rules('password', 'Password', 'trim|required');
+      }
       $this->form_validation->set_rules('account_no', 'Account No.', 'trim|required');
       $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
       $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
       $this->form_validation->set_rules('birthday', 'Birthday', 'trim|required');
       $this->form_validation->set_rules('contact_no', 'Contact Number', 'trim|required|numeric');
       $this->form_validation->set_rules('account_type', 'Acount type', 'trim|required');
-      $this->form_validation->set_rules('username', 'Username', 'trim|required');
-      $this->form_validation->set_rules('password', 'Password', 'trim|required');
       $this->form_validation->set_rules('address', 'Address', 'trim|required');
         if($this->form_validation->run() == FALSE){
           echo json_encode(array(
@@ -59,7 +62,6 @@ class Admin extends Admin_Controller {
           ));
         }else{    
           $this->load->model('users_m');
-          $pass = $this->users_m->hash(post('password'));
 
           $patient_params = array(
             'account_no' => post('account_no'),
@@ -69,14 +71,18 @@ class Admin extends Admin_Controller {
             'contact_no' => post('contact_no'),
             'account_type' => post('account_type'),
             'username' => post('username'),
-            'password' => $pass,
             'address' => post('address'),
             'middle_name' =>post('middle_name'),
           );
+         if(post('id') && post('id') != null){
+          $pass = $this->users_m->hash(post('password'));
+
+            $patient_params['password'] = $pass;
+          }
           if(post('id') && post('id') != ''){
             $id = $this->users_m->save($patient_params,post('id'));
           }else{
-          $id = $this->users_m->save($patient_params);
+            $id = $this->users_m->save($patient_params);
           }
             // print_r($this->db->last_query()); 
           echo json_encode(array(

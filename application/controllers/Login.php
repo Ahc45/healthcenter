@@ -27,7 +27,7 @@ class Login extends Admin_Controller {
 
     $this->load->model('announcement_m');
     $this->data['announcement'] = $this->announcement_m ->get_all();
-
+    // print_r("<pre>"); print_r($this->data['announcement']); die();
 		$this->load->view('_admin/login/login_header',$this->data); 
 
   }
@@ -68,7 +68,10 @@ function validate_login()
         
        redirect('login');
        $this->data['show']= "show";
-
+        // echo json_encode(array(
+        //     'is_valid'=> false,
+        //     'error_msg'=>'Wrong Username and Password combination.',
+        //   ));
       }
     }
   }

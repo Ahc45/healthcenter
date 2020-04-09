@@ -20,7 +20,10 @@ class Vaccine extends Admin_Controller {
   		$this->data['title'] = "Vaccine List";
 	  	$this->data['main_content'] = $this->base_temp.'/view';
 	 	$this->load->model('vaccine_m');
-	 	$this->data['all_vaccine'] =$this->vaccine_m->get_all();
+	 	$params = array(
+	 		'is_deleted' => 0,
+	 	);
+	 	$this->data['all_vaccine'] = $this->vaccine_m->get_all($params);
 	 	//print_r('<pre>'); print_r($all_vaccine); die();
 	 	$this->load->view('_admin/_includes/header',$this->data);
   }
@@ -117,5 +120,15 @@ class Vaccine extends Admin_Controller {
 	 	$this->data['all_vaccine'] =$this->vaccine_m->get_Like(post('search'));
 	 	//print_r('<pre>'); print_r($this->db->last_query()); die();
 	 	$this->load->view('_admin/_includes/header',$this->data);
+    }
+    function delete(){
+
+	 	$this->load->model('vaccine_m');
+	 	$params = array(
+	 		'is_deleted' => 1,
+	 	);
+	 	$this->vaccine_m->save($params,get('id'));
+	 	// print_r($this->db->last_query()); die();
+	 	redirect('vaccine');
     }
 }

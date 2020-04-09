@@ -32,7 +32,7 @@
                           <thead>
                           <tr>
                             <th>Name</th>
-                            <th>Pateince #</th>
+                            <th>Patient #</th>
                             <th>action</th>
                           </tr>
                           </thead>
